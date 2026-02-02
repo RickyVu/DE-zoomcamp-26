@@ -122,3 +122,55 @@ LIMIT 1
 "dropoff_zone"	"max_tip"
 "Yorkville West"	81.89
 ```
+
+---
+
+## Terraform
+
+In this section homework we'll prepare the environment by creating resources in GCP with Terraform.
+
+In your VM on GCP/Laptop/GitHub Codespace install Terraform.
+
+Modify the files as necessary to create a GCP Bucket and Big Query Dataset.
+
+[Check Here](./terraform_test/)
+
+### Solution
+```bash
+# Refresh service-account's auth-token for this session
+gcloud auth application-default login
+
+# Initialize state file (.tfstate)
+terraform init
+```
+
+I first made a terraform.tfvars with this in it:
+```
+project           = "<PROJECT_ID>"
+```
+
+```bash
+# Check changes to new infra plan
+terraform plan
+# Alternatively do: terraform plan -var="project=<PROJECT_ID"
+
+# Create new infra
+terraform apply
+```
+
+```bash
+# Delete infra after work, to avoid costs on any running services
+terraform destroy
+```
+
+---
+
+## Question 7. Terraform Workflow
+
+Which of the following sequences, respectively, describes the workflow for:
+1. Downloading the provider plugins and setting up backend,
+2. Generating proposed changes and auto-executing the plan
+3. Remove all resources managed by terraform
+
+### Solution
+`terraform init, terraform apply -auto-approve, terraform destroy`
